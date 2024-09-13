@@ -1,0 +1,31 @@
+import { createContext } from "react";
+import { createContext,useReducer } from "react";
+
+export const SchedulesContext= createContext()
+
+export const schedulesReducer= (state,action)=>{
+    switch(action.type){
+        case 'SET_SCHEDULES':
+            return {
+                schedules:action.payload
+            }
+        case 'CREATE_SCHEDULE':
+            return {
+                    schedules:[action.payload, ...state.schedules]
+                }
+        default:
+            return state        
+    }
+}
+
+export const ScheduleContextProvider=({children})=>{
+    const [state,dispatch]=useReducer(schedulesReducer,{
+        schedules:null
+    })
+    dispatch({type:'SET_SCHEDULES'})
+return(
+    <ScheduleContext.Provider value={{state, dispatch}}>
+        {children}
+    </ScheduleContext.Provider>
+)
+ }
