@@ -12,6 +12,11 @@ export const schedulesReducer= (state,action)=>{
             return {
                     schedules:[action.payload, ...state.schedules]
                 }
+        case 'DELETE_SCHEDULE':
+            return {
+                    schedules: state.schedules.filter((s) => s._id !== action.payload._id)
+                };
+                           
         default:
             return state        
     }

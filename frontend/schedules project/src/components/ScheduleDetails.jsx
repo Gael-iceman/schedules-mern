@@ -1,18 +1,21 @@
 import React from 'react'
 import { useSchedulesContext } from '../hooks/useSchedulesContext'
 
-function ScheduleDetails({schedule}) {
+const ScheduleDetails = ({schedule})=> {
 
-  const handleClick=async ({schedule})=>{
-    const response= await fetch('http://localhost:9090/api/schedules' +schedule._id,{
-      method:'DELETE'
-    })
-    const json= await response.json()
+const {dispatch}= useSchedulesContext()
 
-    if(response.ok){
-      
-    }
+const handleClick = async () => {
+  const response = await fetch('http://localhost:9090/api/schedules/' + schedule._id, {
+    method: 'DELETE'
+  });
+  
+  if (response.ok) {
+    const json = await response.json();
+    dispatch({ type: 'DELETE_SCHEDULE', payload: json });
   }
+};
+
   return (
     <div className='schedule-details'>
         <h4>{schedule.scheduletitle}</h4>

@@ -16,7 +16,7 @@ function Home() {
             }
         }
         fetchSchedules()
-    },[])
+    },[dispatch])
   return (
     <>
         <div className='home'>
