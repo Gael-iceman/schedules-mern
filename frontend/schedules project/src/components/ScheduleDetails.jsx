@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSchedulesContext } from '../hooks/useSchedulesContext'
 
 function ScheduleDetails({schedule}) {
 

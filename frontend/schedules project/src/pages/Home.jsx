@@ -2,15 +2,17 @@ import React from 'react'
 import{useEffect,useState} from 'react'
 import ScheduleDetails from '../components/scheduleDetails'
 import ScheduleForm from '../components/ScheduleForm'
+import { useSchedulesContext } from '../hooks/useSchedulesContext'
 
 function Home() {
-    const [schedules,setSchedules]= useState(null)
+ const {schedules,dispatch} = useSchedulesContext()
+
     useEffect(()=>{
         const fetchSchedules= async ()=>{
             const response= await fetch('http://localhost:9090/api/schedules')
             const json=await response.json()
             if(response.ok){
-              setSchedules(json)
+              dispatch({type:'SET_SCHEDULES',payload:json})
             }
         }
         fetchSchedules()

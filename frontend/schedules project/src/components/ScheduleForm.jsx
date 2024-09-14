@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { useSchedulesContext } from '../hooks/useSchedulesContext'
 
 function ScheduleForm() {
+    const {dispatch}=useSchedulesContext()
     const [scheduletitle,setscheduletitle]=useState('')
     const [scheduledate,setscheduledate]=useState('')
     const [time_to_start,settime_to_start]=useState('')
@@ -28,10 +30,9 @@ function ScheduleForm() {
             setscheduledate('')
             settime_to_start('')
             settime_to_end('')
-
             setError(null)
-           console.log('new schedule added',json) 
-           window.location.reload();
+           console.log('new schedule added',json)
+           dispatch({type:'CREATE_SCHEDULE',payload:json})
         }
     }
 
