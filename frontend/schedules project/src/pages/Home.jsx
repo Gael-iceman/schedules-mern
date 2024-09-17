@@ -1,5 +1,5 @@
 import React from 'react'
-import{useEffect,useState} from 'react'
+import{useEffect} from 'react'
 import ScheduleDetails from '../components/scheduleDetails'
 import ScheduleForm from '../components/ScheduleForm'
 import { useSchedulesContext } from '../hooks/useSchedulesContext'
@@ -16,7 +16,7 @@ function Home() {
             }
         }
         fetchSchedules()
-    },[dispatch])
+    })
   return (
     <>
         <div className='home'>

@@ -22,10 +22,12 @@ export const schedulesReducer= (state,action)=>{
     }
 }
 
-export const ScheduleContextProvider=({children})=>{
+export const SchedulesContextProvider=({children})=>{
     const [state,dispatch]=useReducer(schedulesReducer,{
         schedules:null
     })
+
+    // dispatch({type:'SET_SCHEDULES',payload:[{},{}]})
 
 return(
     <SchedulesContext.Provider value={{...state, dispatch}}>
